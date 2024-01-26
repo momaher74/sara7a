@@ -8,5 +8,6 @@ app.use(express.json());
 app.use('/user', require('./routes/user_routes'))
 app.use('/msg', require('./routes/messages_rotes')) 
 app.get('/', (req, res) => res.send('Hello Demo page!'))
+app.get('/edit' , (req,res)=>res.send('edited after deploy'))
 app.get('*', (req, res) => res.send('error 404 this page Not found'))
 app.listen(process.env.port, () => console.log(`Example app listening on port !`))
