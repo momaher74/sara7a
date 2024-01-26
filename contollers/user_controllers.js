@@ -4,7 +4,7 @@ const bcrypt =require('bcrypt');
 const { sendMail } = require('../emails/send_email');
 
 module.exports.signup = async (req , res)=>{
-    res.status(400).json({msg:"any respone test"}) ;
+   // res.status(400).json({msg:"any respone test"}) ;
     const {name , email , password , age , image } = req.body ;
     const emailConfirm = false ;
     const exist_user = await userModel.findOne({email}) ; 
