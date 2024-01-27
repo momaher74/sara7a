@@ -4,7 +4,6 @@ const bcrypt =require('bcrypt');
 const { sendMail } = require('../emails/send_email');
 
 module.exports.signup = async (req , res)=>{
-   // res.status(400).json({msg:"any respone test"}) ;
     const {name , email , password , age , image } = req.body ;
     const emailConfirm = false ;
     const exist_user = await userModel.findOne({email}) ; 
@@ -61,4 +60,16 @@ module.exports.verifayEmail = async(req , res)=>{
           }
      }});   
      
+}
+
+
+module.exports.visitProfile = async(req , res)=>{
+    const {token} =  req.params ;
+    jwt.verify(token , 'p_key' , (error , user)=>{
+        if(error){
+            res.status(400).json({ msg : "404 NOT FOUND, this link isn't available " ,error})
+        }else{
+            res.status(200).json({msg :' the profile was visted ',user})     
+        }
+    }) 
 }
